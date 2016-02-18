@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tic Tac Toe</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="container">
+	<h1>Tic Tac Toe</h1>
+		<div class="ttt-main-box">
+			<div id="row-1" name="0">
+				<div class="ttt-box" name="0"><p></p></div>
+				<div class="ttt-box gray" name="1"><p></p></div>
+				<div class="ttt-box" name="2"><p></p></div>
+			</div><!--row-1-->
+			<div id="row-2" name="1">
+				<div class="ttt-box gray" name="0"><p></p></div>
+				<div class="ttt-box" name="1"><p></p></div>
+				<div class="ttt-box gray" name="2"><p></p></div>
+			</div><!--row-2-->
+			<div id="row-3" name="2">
+				<div class="ttt-box" name="0"><p></p></div>
+				<div class="ttt-box gray" name="1"><p></p></div>
+				<div class="ttt-box" name="2"><p></p></div>
+			</div>
+		</div><!--ttt box-->
+		<div class="rounds">
+			<h2>Number of Rounds</h2>
+			<select>
+			  <option value="1">1</option>
+			  <option value="3">3</option>
+			  <option value="5">5</option>
+			  <option value="7">7</option>
+			</select>
+		</div><!--rounds-->
+		<div class="score">
+			<p class="wins"><span id="player1">X</span> Wins:--</p>
+			<p class="wins"><span id="player2">O</span> Wins:--</p>
+		</div>
+		</div><!--container-->
+	</div><!--wrapper-->
+	<script src="script.js" type="text/javascript"></script>
+</body>
+</html>
