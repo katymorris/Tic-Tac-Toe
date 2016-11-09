@@ -12,17 +12,38 @@
     ['', '', '']
   ]
   var leftVertBoard;
-  var play1;
-  var play2;
+  var player1;
+  var player2;
+  var roundsNum;
   /* -------------------- FUNCTIONS -------------------- */
   /* -------------------------------------------------- */
+
+  /*------GAME------*/
+
   function playerWins(winner) {
     console.log('made it to winner')
     if(winner === 0) {
-      alert(play2 + ' Wins!');
+      $('.module-overlay').css('display', 'block').transition({'opacity': '1'}, {duration: 300, queue: true})
+      $('#rounds-modal').css('display', 'block');
+      $('.module-overlay').css('display', 'block').transition({'opacity': '1'}, {duration: 300, queue: true})
+      tttBoard = [
+          ['', '', ''],
+          ['', '', ''],
+          ['', '', '']
+        ]
+      clickCount = 0;
+
     } 
     if(winner > 0) {
-      alert(play1 + ' Wins!');
+      $('.module-overlay').css('display', 'block').transition({'opacity': '1'}, {duration: 300, queue: true})
+      $('#round-won-modal').css('display', 'block');
+      $('.module-overlay').css('display', 'block').transition({'opacity': '1'}, {duration: 300, queue: true})
+       tttBoard = [
+          ['', '', ''],
+          ['', '', ''],
+          ['', '', '']
+        ]   
+      clickCount = 0; 
     }
   }
   function resetBoard() {
@@ -38,20 +59,61 @@
     clickCount = 0;
   }
 
-  //add player names
-  function namesPrompt() {
-    play1 = prompt('Please type the name of Player 1');
-    play2 = prompt('Please type the name of Player 2');
-    console.log(player1)
-  }
-  namesPrompt()
-  //game board
-  //add score to game board
-
-
   /* -------------------- EVENT LISTENERS -------------------- */
   /* -------------------------------------------------------- */
   
+    /*------MODALS------*/
+
+   //open modal
+    $('body').on('click singletap tap', '.modal-open', function() {
+        $(this).addClass('modal-clicked')
+        $('.module-overlay').css('display', 'block').transition({'opacity': '1'}, {duration: 300, queue: true})
+        var thisData = $(this).data('module');
+        var matchingModule = $('body').find("[data-modulebox='" + thisData + "']");
+        $(matchingModule).css('display', 'block').transition({'opacity': '1'}, {duration: 300});
+        $(matchingModule).addClass('matching-module-open')
+        $('body').css('overflow', 'hidden');
+    });
+    //close modal
+    $('body').on('click singletap tap', '.module-close', function() {
+        $('.module-overlay').transition({'opacity': '0'}, {duration: 300, complete: function() {
+            $('.module-overlay').css('display', 'none');
+        }})
+        $(this).removeClass('modal-clicked')
+        $('.matching-module-open').css('display', 'none').removeClass('matching-module-open');
+        var modContParent = $(this).parent();
+        var modWrapper = $(modContParent).parent();
+        $(modWrapper).css('display', 'none');
+        $('.top-bar').transition({'opacity': '1', 'position': 'fixed'}, 300)
+        $('body').css('overflow', 'auto');
+    });
+    //get user input
+    $('body').on('click singletap tap', '.player-names-submit', function() {
+      player1 = document.getElementById("player1").value;
+      player2 = document.getElementById("player2").value;
+      $('#players-modal').css('display', 'none');
+      $('#rounds-modal').css('display', 'block');
+    });
+    $('body').on('click singletap tap', '.rounds-submit', function() {
+      roundsNum = document.getElementById("rounds").value;
+      $('#rounds-modal').css('display', 'none');
+              $('.module-overlay').transition({'opacity': '0'}, {duration: 300, complete: function() {
+            $('.module-overlay').css('display', 'none');
+        }})
+      console.log(player1)
+      console.log(player2)
+      console.log(roundsNum)
+    });
+    $('body').on('click singletap tap', '.next-round-btn', function() {
+      $('#round-won-modal').css('display', 'none');
+      $('.module-overlay').transition({'opacity': '0'}, {duration: 300, complete: function() {
+        $('.module-overlay').css('display', 'none');
+      }})
+    })
+
+    /*------GAME------*/
+
+
   for(i=0; i<tttBox.length; i++) {
     var didWin = false;
     tttBox[i].addEventListener("click", function() {

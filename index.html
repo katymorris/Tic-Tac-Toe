@@ -2,45 +2,81 @@
 <html>
 <head>
 	<title>Tic Tac Toe</title>
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<div class="wrapper">
+		<div class="module-overlay"></div>
+		<div class="module-wrapper" id="players-modal">
+			<div class="module-container">
+				<div class="module-content">
+					<div class="module-content-container">
+						<h2>Players</h2>
+						<form>
+							<input class="text-input" id="player1" type="text" name="player-1" placeholder="Who will be Player 1?">
+							<div class="push"></div>
+							<input class="text-input" id="player2" type="text" name="player-2" placeholder="Who will be Player 2?">
+							<div class="push"></div>
+							<input class="player-names-submit submit-btn" type="button" value="Submit">
+						</form>
+					</div><!--module container-->
+				</div><!--module content-->
+			</div><!--module container-->
+		</div><!--module wrapper-->
+		<div class="module-wrapper" id="rounds-modal">
+			<div class="module-container">
+				<div class="module-content">
+					<div class="module-content-container">
+						<h2>How many rounds?</h2>
+						<form>
+							<input class="text-input" id="rounds" type="text" name="rounds">
+							<div class="push"></div>
+							<input class="rounds-submit submit-btn" type="button" value="Submit">
+						</form>
+					</div><!--module container-->
+				</div><!--module content-->
+			</div><!--module container-->
+		</div><!--module wrapper-->
+		<div class="module-wrapper" id="round-won-modal">
+			<div class="module-container">
+				<div class="module-content">
+					<div class="module-content-container">
+						<h2><span></span> wins this round!</h2>
+						<div class="next-round-btn submit-btn">Play Next Round</div>
+					</div><!--module container-->
+				</div><!--module content-->
+			</div><!--module container-->
+		</div><!--module wrapper-->
 		<div class="container">
-	<h1>Tic Tac Toe</h1>
-		<div class="ttt-main-box">
-			<div id="row-1" name="0">
-				<div class="ttt-box plain-color" name="0"><p></p></div>
-				<div class="ttt-box color-box" name="1"><p></p></div>
-				<div class="ttt-box plain-color" name="2"><p></p></div>
-			</div><!--row-1-->
-			<div id="row-2" name="1">
-				<div class="ttt-box color-box" name="0"><p></p></div>
-				<div class="ttt-box plain-color" name="1"><p></p></div>
-				<div class="ttt-box color-box" name="2"><p></p></div>
-			</div><!--row-2-->
-			<div id="row-3" name="2">
-				<div class="ttt-box plain-color" name="0"><p></p></div>
-				<div class="ttt-box color-box" name="1"><p></p></div>
-				<div class="ttt-box plain-color" name="2"><p></p></div>
+		<h1>Tic Tac Toe</h1>
+			<div class="ttt-main-box">
+				<div id="row-1" name="0">
+					<div class="ttt-box plain-color" name="0"><p></p></div>
+					<div class="ttt-box color-box" name="1"><p></p></div>
+					<div class="ttt-box plain-color" name="2"><p></p></div>
+				</div><!--row-1-->
+				<div id="row-2" name="1">
+					<div class="ttt-box color-box" name="0"><p></p></div>
+					<div class="ttt-box plain-color" name="1"><p></p></div>
+					<div class="ttt-box color-box" name="2"><p></p></div>
+				</div><!--row-2-->
+				<div id="row-3" name="2">
+					<div class="ttt-box plain-color" name="0"><p></p></div>
+					<div class="ttt-box color-box" name="1"><p></p></div>
+					<div class="ttt-box plain-color" name="2"><p></p></div>
+				</div>
+				<div class="push"></div>
+			</div><!--ttt box-->
+			<div class="score">
+				<p class="wins"><span id="player1">X</span> Wins:--</p>
+				<p class="wins"><span id="player2">O</span> Wins:--</p>
 			</div>
-			<div class="push"></div>
-		</div><!--ttt box-->
-		<div class="rounds">
-			<h2>Number of Rounds</h2>
-			<select>
-			  <option value="1">1</option>
-			  <option value="3">3</option>
-			  <option value="5">5</option>
-			  <option value="7">7</option>
-			</select>
-		</div><!--rounds-->
-		<div class="score">
-			<p class="wins"><span id="player1">X</span> Wins:--</p>
-			<p class="wins"><span id="player2">O</span> Wins:--</p>
-		</div>
 		</div><!--container-->
 	</div><!--wrapper-->
+	<script src="transit.js" type="text/javascript"></script>
 	<script src="script.js" type="text/javascript"></script>
 </body>
 </html>
