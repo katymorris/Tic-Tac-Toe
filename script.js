@@ -15,8 +15,16 @@
   var player1;
   var player2;
   var roundsNum;
+
   /* -------------------- FUNCTIONS -------------------- */
   /* -------------------------------------------------- */
+
+  function positionModal() {
+    var modalHeight = $('.modal-open').height();
+    var modalMargin = modalHeight / 2;
+    $('.modal-open').css('margin-top', modalMargin * -1);
+  }
+  positionModal();
 
   /*------GAME------*/
 
@@ -24,7 +32,9 @@
     console.log('made it to winner')
     if(winner === 0) {
       $('.module-overlay').css('display', 'block').transition({'opacity': '1'}, {duration: 300, queue: true})
-      $('#rounds-modal').css('display', 'block');
+      $('#round-won-modal').css('display', 'block')
+      $('#round-won-content').addClass('modal-open');
+      positionModal()
       $('.module-overlay').css('display', 'block').transition({'opacity': '1'}, {duration: 300, queue: true})
       tttBoard = [
           ['', '', ''],
@@ -36,7 +46,9 @@
     } 
     if(winner > 0) {
       $('.module-overlay').css('display', 'block').transition({'opacity': '1'}, {duration: 300, queue: true})
-      $('#round-won-modal').css('display', 'block');
+      $('#round-won-modal').css('display', 'block')
+      $('#round-won-content').addClass('modal-open');
+      positionModal()
       $('.module-overlay').css('display', 'block').transition({'opacity': '1'}, {duration: 300, queue: true})
        tttBoard = [
           ['', '', ''],
@@ -58,52 +70,30 @@
     ];
     clickCount = 0;
   }
-
   /* -------------------- EVENT LISTENERS -------------------- */
   /* -------------------------------------------------------- */
-  
     /*------MODALS------*/
 
-   //open modal
-    $('body').on('click singletap tap', '.modal-open', function() {
-        $(this).addClass('modal-clicked')
-        $('.module-overlay').css('display', 'block').transition({'opacity': '1'}, {duration: 300, queue: true})
-        var thisData = $(this).data('module');
-        var matchingModule = $('body').find("[data-modulebox='" + thisData + "']");
-        $(matchingModule).css('display', 'block').transition({'opacity': '1'}, {duration: 300});
-        $(matchingModule).addClass('matching-module-open')
-        $('body').css('overflow', 'hidden');
-    });
-    //close modal
-    $('body').on('click singletap tap', '.module-close', function() {
-        $('.module-overlay').transition({'opacity': '0'}, {duration: 300, complete: function() {
-            $('.module-overlay').css('display', 'none');
-        }})
-        $(this).removeClass('modal-clicked')
-        $('.matching-module-open').css('display', 'none').removeClass('matching-module-open');
-        var modContParent = $(this).parent();
-        var modWrapper = $(modContParent).parent();
-        $(modWrapper).css('display', 'none');
-        $('.top-bar').transition({'opacity': '1', 'position': 'fixed'}, 300)
-        $('body').css('overflow', 'auto');
-    });
     //get user input
     $('body').on('click singletap tap', '.player-names-submit', function() {
       player1 = document.getElementById("player1").value;
       player2 = document.getElementById("player2").value;
       $('#players-modal').css('display', 'none');
-      $('#rounds-modal').css('display', 'block');
+      $('.modal-open').removeClass('modal-open');
+      $('#rounds-modal').css('display', 'block')
+      $('#rounds-content').addClass('modal-open');
+      positionModal();
     });
+    //get rounds
     $('body').on('click singletap tap', '.rounds-submit', function() {
       roundsNum = document.getElementById("rounds").value;
       $('#rounds-modal').css('display', 'none');
               $('.module-overlay').transition({'opacity': '0'}, {duration: 300, complete: function() {
             $('.module-overlay').css('display', 'none');
         }})
-      console.log(player1)
-      console.log(player2)
-      console.log(roundsNum)
+      $('.modal-open').removeClass('modal-open');
     });
+    //go to next round
     $('body').on('click singletap tap', '.next-round-btn', function() {
       $('#round-won-modal').css('display', 'none');
       $('.module-overlay').transition({'opacity': '0'}, {duration: 300, complete: function() {
